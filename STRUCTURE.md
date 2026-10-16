@@ -1,0 +1,149 @@
+- Section 1: Header / Navigation
+    - Layout: 3 columns (logo | menu | ação)
+        - Background color: #F2F1EC
+        - Columns:
+            - Column 1:
+                - Logo: c + the computer company
+            - Column 2:
+                - Nav link: Produto
+                - Nav link: Soluções
+                - Nav link: Blog
+                - Nav link: Carreiras
+            - Column 3:
+                - Call to action button: Agendar demo
+
+- Section 2: Hero
+    - Layout: 1 column (full-bleed)
+        - Background color: #1A1A1A
+        - Columns:
+            - Column 1:
+                - Image: [Wide cinematic shot of an industrial logistics environment with subtle motion blur, dark overlay for white text legibility]
+                - Title h1: Coloque agentes para trabalhar em ambientes complexos
+                - Call to action button: Agendar demo
+
+- Section 3: It Starts With Agents
+    - Layout: 2 columns
+        - Background color: #F2F1EC
+        - Columns:
+            - Column 1:
+                - Eyebrow: O tipo de trabalho que fazemos
+                - Title h2: Tudo começa com agentes
+                - Description: A plataforma coloca os seus agentes para trabalhar em ambientes complexos.
+                - Call to action button: Agendar demo
+            - Column 2:
+                - List item: Agentes são trabalhadores de IA autônomos, capazes de comunicação e coordenação. (01)
+                - List item: Para colocá-los para trabalhar, implantamos e escalamos funções centrais do negócio. (02)
+                - List item: Ambientes complexos são fragmentados, operacionalmente confusos e cheios de exceções. (03)
+
+- Section 4: Statement
+    - Layout: 1 column
+        - Background color: #0B1B2B
+        - Columns:
+            - Column 1:
+                - Title h2: O limite do que a IA faz na sua empresa não é o modelo. É o quanto o modelo conhece como a sua empresa opera. E esse contexto só se captura de um jeito: fazendo o trabalho.
+
+- Section 5: Agents Need a Platform
+    - Layout: 2 columns
+        - Background color: #EDE9DC
+        - Columns:
+            - Column 1:
+                - Eyebrow: Construindo superinteligência empresarial
+                - Title h2: Agentes precisam de uma plataforma
+                - Call to action button: Visão geral da plataforma
+                - Subtitle: O comportamento do agente é avaliado
+                - Description: A plataforma parte de agentes constantemente avaliados contra benchmarks técnicos e comportamentais.
+                - Subtitle: Agentes coletam e aprendem com o contexto
+                - Description: A experiência real vira contexto, aproveitado para insight e melhoria contínua.
+                - Subtitle: Pessoas interagem com agentes
+                - Description: Interfaces sob medida encaixam no seu jeito de trabalhar e permitem colaboração junto ao time de IA.
+            - Column 2:
+                - Diagram: [Diagrama central com "Agentes" no meio (logo) cercado por quatro nós: Governança, Interfaces, Integrações empresariais, Contexto — conectados por linhas finas]
+                - Icon: Shield (Lucide) — Governança
+                - Icon: LayoutGrid (Lucide) — Interfaces
+                - Icon: Plug (Lucide) — Integrações empresariais
+                - Icon: Database (Lucide) — Contexto
+
+- Section 6: Deployed in the Real World
+    - Layout: 2 columns texto + grade 2x2 de cards
+        - Background color: #F2F1EC
+        - Columns:
+            - Column 1:
+                - Eyebrow: Nossos produtos
+                - Title h2: Implantado no mundo real
+            - Column 2:
+                - Description: Nosso foco está em implantações em empresas complexas. Aprendemos com casos reais onde está toda a desordem das exceções e consequências quando algo dá errado. Levamos a IA do laboratório para o campo.
+        - Card grid:
+            - Card 1:
+                - Image: [Caminhão de entrega urbana com motion blur, logo de cliente de logística sobreposto]
+                - Title h3: Escala global entre regiões e unidades de negócio
+                - Link: Saiba mais
+            - Card 2:
+                - Image: [Painéis solares em campo aberto ao entardecer]
+                - Title h3: Parceria para transformar o atendimento ao cliente
+                - Link: Saiba mais
+            - Card 3:
+                - Image: [Centro de controle com operadores em frente a múltiplos monitores]
+                - Title h3: Sistema multiagente com torre de controle customizada
+                - Link: Saiba mais
+            - Card 4:
+                - Image: [Equipe de operações logísticas com coletes de segurança, movimento]
+                - Title h3: 78% de execução autônoma em trabalho crítico
+                - Link: Saiba mais
+
+- Section 7: Optimized for Impact
+    - Layout: 3 columns
+        - Background color: #F2F1EC
+        - Columns:
+            - Column 1:
+                - Icon: Sparkle (Lucide)
+                - Title h3: Sob medida
+                - Description: Soluções relevantes atendem a empresa onde ela está — o que muitas vezes exige contexto, tecnologia e padrões totalmente próprios, diferentes do que qualquer sistema genérico usa hoje.
+            - Column 2:
+                - Icon: Layers (Lucide)
+                - Title h3: Complexo
+                - Description: Ambientes complexos, sozinhos, exigem profundidade — o que faz da realidade o teste mais difícil, sustentando a criação e a captura de lógica e capacidade globais entre fluxos de trabalho.
+            - Column 3:
+                - Icon: Boxes (Lucide)
+                - Title h3: Multifunção
+                - Description: Empresas têm uma amplitude de conhecimento e insight ao longo de funções. Quando um agente aprende, ele melhora — e os agentes devem aprender e melhorar em toda parte.
+
+- Section 8: Final CTA
+    - Layout: 1 column (centralizado)
+        - Background color: #EDE9DC
+        - Columns:
+            - Column 1:
+                - Title h2: Coloque agentes para trabalhar em ambientes complexos
+                - Call to action button: Agendar demo
+
+- Section 9: Footer
+    - Layout: 5 columns
+        - Background color: #F2F1EC
+        - Columns:
+            - Column 1:
+                - Logo: c + the computer company
+                - Language selector: PT
+            - Column 2:
+                - Footer heading: Produto
+                - Footer link: Visão geral da plataforma
+                - Footer link: Agentes
+                - Footer link: Governança
+                - Footer link: Contexto
+                - Footer link: Interfaces
+                - Footer link: Segurança e confiabilidade
+                - Footer link: Ferramentas para desenvolvedores
+            - Column 3:
+                - Footer heading: Empresa
+                - Footer link: Blog
+                - Footer link: Carreiras
+                - Footer link: Media Kit
+            - Column 4:
+                - Footer heading: Termos e políticas
+                - Footer link: Termos de serviço
+                - Footer link: Política de privacidade
+                - Footer link: Política de cookies
+                - Footer link: Preferências de consentimento
+            - Column 5:
+                - Footer heading: Social
+                - Footer link: LinkedIn
+                - Footer link: X
+                - Copyright: © 2026 The Computer Company
