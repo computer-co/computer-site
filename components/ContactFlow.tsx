@@ -39,8 +39,8 @@ const STEPS: StepId[] = ["nome", "empresa", "contato", "cargo", "faturamento", "
 const MOTIVO_MIN = 120;
 const MOTIVO_MAX = 1500;
 const LETTERS = "ABCDEFGH";
-// duração da saída da pergunta anterior (precisa bater com .cf-out-* no globals.css)
-const OUT_MS = 420;
+// tempo que a pergunta anterior fica montada (inerte) enquanto some e a nova entra
+const OUT_MS = 400;
 
 const firstName = (n: string) => n.trim().split(/\s+/)[0] ?? "";
 
@@ -141,7 +141,13 @@ export default function ContactFlow() {
     if (!open) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    // depois que o overlay terminou de abrir, esconde o site por baixo
+    // (html.cf-lock no globals.css): o navegador para de compor a página
+    // inteira atrás do formulário a cada frame
+    const lock = setTimeout(() => document.documentElement.classList.add("cf-lock"), 400);
     return () => {
+      clearTimeout(lock);
+      document.documentElement.classList.remove("cf-lock");
       document.body.style.overflow = prev;
     };
   }, [open]);
@@ -162,8 +168,8 @@ export default function ContactFlow() {
     setShake((n) => n + 1);
   };
 
-  // Crossfade: a pergunta anterior continua renderizada (inerte) por cima,
-  // sumindo, enquanto a nova já entra por baixo. Sem "buraco" entre as duas.
+  // Fade-through: a pergunta anterior continua montada (inerte) enquanto some
+  // rápido; a nova entra logo em seguida, na mesma posição ancorada.
   const transition = (d: "fwd" | "back", apply: () => void) => {
     setPrev({ id, dir: d, n: Date.now() });
     setDir(d);
@@ -503,8 +509,9 @@ export default function ContactFlow() {
       {/* barra de progresso */}
       <div className="absolute inset-x-0 top-0 h-[3px] bg-line/50">
         <div
-          className="h-full bg-accent transition-[width] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-          style={{ width: `${Math.max(progress, 0.04) * 100}%` }}
+          // scaleX (GPU) em vez de width: animar width recalcula o layout a cada frame
+          className="h-full w-full origin-left bg-accent transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform"
+          style={{ transform: `scaleX(${Math.max(progress, 0.04)})` }}
         />
       </div>
 
@@ -555,12 +562,13 @@ export default function ContactFlow() {
       <div ref={panelRef} className="flex-1 overflow-y-auto">
         <div className="shell flex min-h-full flex-col">
           {!done ? (
-            // pergunta ancorada a uma altura fixa: o título não "pula" entre etapas
-            <div className="mx-auto w-full max-w-2xl flex-1 pb-10 pt-[clamp(1.5rem,12vh,7rem)]">
-              <div className="grid">
+            // pergunta centralizada na vertical. A anterior fica numa camada
+            // absoluta, também centralizada por conta própria: assim nenhuma das
+            // duas muda de lugar durante a troca, mesmo com alturas diferentes.
+            <div className="relative mx-auto flex w-full max-w-2xl flex-1 flex-col">
                 <div
                   key={`${id}-${otherCargo}`}
-                  className={`cf-stage cf-in-${dir} [grid-area:1/1]`}
+                  className={`cf-stage cf-in-${dir} flex flex-1 flex-col justify-center py-10`}
                 >
                 {renderStep(id)}
 
@@ -579,12 +587,13 @@ export default function ContactFlow() {
                     key={`prev-${prev.n}`}
                     aria-hidden
                     inert
-                    className={`cf-stage cf-out-${prev.dir} pointer-events-none [grid-area:1/1]`}
+                    className={`cf-stage cf-out-${prev.dir} pointer-events-none absolute inset-0 flex flex-col justify-center py-10`}
                   >
                     {renderStep(prev.id)}
+                    {/* mesmo espaço da linha de erro, para centralizar igual */}
+                    <p className="mt-4 h-5" />
                   </div>
                 )}
-              </div>
             </div>
           ) : (
             <div className="cf-in-fwd mx-auto flex w-full max-w-5xl flex-1 flex-col py-8 md:py-10">
@@ -858,7 +867,7 @@ function Options({
                 ? "border-ink bg-ink text-paper"
                 : "border-line bg-card hover:-translate-y-px hover:border-ink/60"
             } ${flashing ? "cf-flash" : ""} ${picked && !flashing ? "opacity-40" : ""}`}
-            style={{ animationDelay: `${220 + i * 45}ms` }}
+            style={{ animationDelay: `${520 + i * 50}ms` }}
           >
             <span
               className={`grid h-6 w-6 shrink-0 place-items-center rounded-[3px] border text-[11px] font-medium transition-colors ${
