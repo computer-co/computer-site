@@ -5,7 +5,7 @@ import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 import Button from "@/components/ui/Button";
 import { getPosts, getPost, renderMarkdown, formatDate, extractFaq } from "@/lib/blog";
-import { scheduleUrl } from "@/lib/content";
+import { contactHash } from "@/lib/content";
 import { siteUrl, entity } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -128,7 +128,7 @@ export default async function PostPage({
           />
 
           <div className="mt-14 flex justify-center">
-            <Button href={scheduleUrl} variant="primary">
+            <Button href={contactHash} variant="primary">
               Falar com o time
             </Button>
           </div>

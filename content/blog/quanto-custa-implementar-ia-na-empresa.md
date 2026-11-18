@@ -5,7 +5,7 @@ description: "Quanto custa implementar inteligência artificial numa empresa: fa
 date: 2026-11-18
 author: Caio Saback
 category: Guia
-draft: true
+draft: false
 ---
 
 <p class="answer"><strong>Resposta rápida:</strong> depende do tipo de IA. Copilotos como ChatGPT, Claude e Gemini custam em torno de US$ 20 a US$ 30 por pessoa por mês. Automações com ferramentas como n8n, Make ou Zapier têm planos a partir de algumas dezenas de dólares por mês, mais o trabalho de configuração. Agentes de IA sob medida são projetos: no mercado brasileiro, vão de alguns milhares a dezenas de milhares de reais, mais um custo mensal de operação. O jeito mais seguro de gastar bem é começar com um piloto pequeno e medir o retorno.</p>

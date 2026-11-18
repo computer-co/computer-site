@@ -11,19 +11,50 @@ export const brand = {
 // Link de agendamento (Calendly)
 export const scheduleUrl = "https://calendly.com/thecomputer/computer-reuniao";
 
+// Todos os CTAs "Falar com o time" abrem o formulário de qualificação
+// (components/ContactFlow.tsx), que termina na agenda do Calendly.
+export const contactHash = "#falar-com-o-time";
+
+export const contactFlow = {
+  intro: "Falar com o time · leva menos de 1 minuto",
+  cargos: [
+    "Sócio(a) / CEO",
+    "Diretor(a) / C-level",
+    "Gerente / Head",
+    "Coordenador(a) / Analista",
+    "Outro",
+  ],
+  faturamentos: [
+    "Até R$ 1 milhão",
+    "R$ 1 – 10 milhões",
+    "R$ 10 – 50 milhões",
+    "R$ 50 – 200 milhões",
+    "Acima de R$ 200 milhões",
+  ],
+  // exemplos que se revezam no campo "Por que você quer conversar com a gente?"
+  exemplosMotivo: [
+    "Ex.: hoje 3 pessoas passam a manhã conferindo pedidos que chegam pelo WhatsApp e lançando no ERP. Erra muito e atrasa a expedição.",
+    "Ex.: o financeiro gasta 2 dias por mês conciliando extratos de 4 bancos numa planilha. Sempre sobra uma diferença que ninguém sabe explicar.",
+    "Ex.: o comercial demora horas pra responder os leads no WhatsApp. Quando responde, o cliente já fechou com outro.",
+    "Ex.: o suporte responde as mesmas 20 perguntas o dia inteiro. São 2 pessoas só nisso, e o cliente ainda espera horas.",
+    "Ex.: recebemos centenas de notas e boletos por e-mail. Alguém baixa, confere e lança um por um no sistema.",
+    "Ex.: cada proposta leva meio dia, copiando dados de 3 sistemas diferentes. Já perdemos venda por erro de preço.",
+  ],
+} as const;
+
 export const nav = {
   links: [
     { label: "Produto", href: "/#produto" },
     { label: "Soluções", href: "/#solucoes" },
   ],
-  cta: { label: "Falar com o time", href: scheduleUrl },
+  cta: { label: "Falar com o time", href: contactHash },
 };
 
 export const hero = {
   title: "Agentes que eliminam o trabalho repetitivo.",
   subtitle:
     "Sua operação tem gargalos repetitivos que drenam tempo e dinheiro. Nós construímos agentes de IA que eliminam esses gargalos.",
-  cta: { label: "Falar com o time", href: scheduleUrl },
+  cta: { label: "Falar com o time", href: contactHash },
   image: "/images/hero.jpg",
   imageAlt: "Pessoa caminhando em um espaço de concreto com luz diagonal",
 };
@@ -37,7 +68,7 @@ export const startsWithAgents = {
   title: "Tudo começa com agentes",
   description:
     "Agentes de IA autônomos, implantados para executar funções reais do negócio — começando pelos processos mais fragmentados, confusos e cheios de exceções.",
-  cta: { label: "Falar com o time", href: scheduleUrl },
+  cta: { label: "Falar com o time", href: contactHash },
   items: [
     {
       n: "01",
@@ -57,7 +88,7 @@ export const startsWithAgents = {
 export const platform = {
   eyebrow: "Metodologia",
   title: "Como colocamos agentes para trabalhar",
-  cta: { label: "Falar com o time", href: scheduleUrl },
+  cta: { label: "Falar com o time", href: contactHash },
   points: [
     {
       title: "Entendemos o gargalo",
@@ -133,7 +164,7 @@ export const optimized = {
 
 export const finalCta = {
   title: "Coloque os agentes para trabalhar",
-  cta: { label: "Falar com o time", href: scheduleUrl },
+  cta: { label: "Falar com o time", href: contactHash },
 };
 
 export const footer = {

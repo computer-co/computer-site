@@ -275,3 +275,93 @@
   width: 100%;
   border-top-color: var(--color-line);
 }
+
+/* ---- Formulário "Falar com o time" (components/ContactFlow.tsx) ---- */
+@keyframes cf-overlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* entrada: vem de baixo (avançar) ou de cima (voltar), deslocamento curto */
+@keyframes cf-in-fwd {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes cf-in-back {
+  from { opacity: 0; transform: translate3d(0, -14px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+/* saída: a pergunta anterior some devagar enquanto a nova já está entrando */
+@keyframes cf-out-fwd {
+  from { opacity: 1; transform: translate3d(0, 0, 0); }
+  to { opacity: 0; transform: translate3d(0, -10px, 0); }
+}
+@keyframes cf-out-back {
+  from { opacity: 1; transform: translate3d(0, 0, 0); }
+  to { opacity: 0; transform: translate3d(0, 10px, 0); }
+}
+/* cascata dentro da pergunta nova: título → dica → campo */
+@keyframes cf-rise {
+  from { opacity: 0; transform: translate3d(0, 10px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes cf-opt {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes cf-flash {
+  0% { transform: scale(1); }
+  35% { transform: scale(0.97); }
+  70% { transform: scale(1.015); }
+  100% { transform: scale(1); }
+}
+@keyframes cf-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+@keyframes cf-pop {
+  0% { opacity: 0; transform: scale(0.4); }
+  60% { opacity: 1; transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+@keyframes cf-dots {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+.cf-overlay { animation: cf-overlay 0.35s ease-out both; }
+/* camada própria na GPU: o texto grande não é repintado a cada frame */
+.cf-stage { will-change: transform, opacity; backface-visibility: hidden; }
+/* a nova começa 0.12s depois da anterior começar a sumir: as duas se cruzam */
+.cf-in-fwd { animation: cf-in-fwd 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both; }
+.cf-in-back { animation: cf-in-back 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both; }
+/* 0.42s = OUT_MS em components/ContactFlow.tsx */
+.cf-out-fwd { animation: cf-out-fwd 0.42s cubic-bezier(0.32, 0, 0.67, 0) both; }
+.cf-out-back { animation: cf-out-back 0.42s cubic-bezier(0.32, 0, 0.67, 0) both; }
+.cf-stage[class*="cf-in-"] .cf-q-hint {
+  animation: cf-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+.cf-stage[class*="cf-in-"] .cf-q-body {
+  animation: cf-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.26s both;
+}
+.cf-opt { animation: cf-opt 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.cf-opt.cf-flash { animation: cf-flash 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.cf-shake { animation: cf-shake 0.4s ease-in-out; }
+.cf-pop { animation: cf-pop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.cf-dots {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--color-ink);
+  animation: cf-dots 1s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-overlay, .cf-in-fwd, .cf-in-back, .cf-out-fwd, .cf-out-back, .cf-opt, .cf-shake, .cf-pop,
+  .cf-stage .cf-q-hint, .cf-stage .cf-q-body {
+    animation: none;
+  }
+  .cf-out-fwd, .cf-out-back { display: none; }
+}

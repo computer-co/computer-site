@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Newsreader, Inter } from "next/font/google";
 import "./globals.css";
 import { siteUrl, entity, jsonLd } from "@/lib/seo";
+import ContactFlow from "@/components/ContactFlow";
 
 // Serif display elegante (com optical sizing) para os títulos
 const fraunces = Fraunces({
@@ -74,6 +75,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <ContactFlow />
       </body>
     </html>
   );
