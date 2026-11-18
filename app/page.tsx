@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import SiteHeader from "@/components/SiteHeader";
 import Hero from "@/components/Hero";
 import Statement from "@/components/Statement";
 import StartsWithAgents from "@/components/StartsWithAgents";
@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      <Header />
+      <SiteHeader />
       <main>
         <Hero />
         <StartsWithAgents />

@@ -8,7 +8,7 @@ import { nav, brand } from "@/lib/content";
 
 function Wordmark() {
   return (
-    <Link href="#top" className="group flex min-w-0 items-center gap-2">
+    <Link href="/" className="group flex min-w-0 items-center gap-2">
       <span
         aria-hidden
         className="grid h-7 w-7 shrink-0 place-items-center bg-ink font-serif text-[15px] italic leading-none text-paper sm:h-8 sm:w-8 sm:text-[17px]"
@@ -22,7 +22,11 @@ function Wordmark() {
   );
 }
 
-export default function Header() {
+export default function Header({
+  links,
+}: {
+  links: { label: string; href: string }[];
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -32,7 +36,7 @@ export default function Header() {
 
         {/* nav centralizado — desktop */}
         <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 md:flex">
-          {nav.links.map((l) => (
+          {links.map((l) => (
             <Link
               key={l.label}
               href={l.href}
@@ -66,7 +70,7 @@ export default function Header() {
       {open && (
         <div className="border-t border-line bg-paper md:hidden">
           <div className="shell flex flex-col py-4">
-            {nav.links.map((l) => (
+            {links.map((l) => (
               <Link
                 key={l.label}
                 href={l.href}

@@ -13,9 +13,8 @@ export const scheduleUrl = "https://calendly.com/thecomputer/computer-reuniao";
 
 export const nav = {
   links: [
-    { label: "Produto", href: "#produto" },
-    { label: "Soluções", href: "#solucoes" },
-    { label: "Blog", href: "#" },
+    { label: "Produto", href: "/#produto" },
+    { label: "Soluções", href: "/#solucoes" },
   ],
   cta: { label: "Falar com o time", href: scheduleUrl },
 };
@@ -139,9 +138,7 @@ export const finalCta = {
 
 export const footer = {
   // apenas o que precisa estar ali por lei (LGPD/consentimento) + copyright
-  legal: [
-    { label: "Política de privacidade", href: "#" },
-    { label: "Termos de uso", href: "#" },
-    { label: "Preferências de cookies", href: "#" },
-  ],
+  // Links legais removidos enquanto as páginas não existem (links "#" prejudicam SEO/confiança).
+  // Reative quando houver /privacidade e /termos publicados.
+  legal: [] as { label: string; href: string }[],
 };

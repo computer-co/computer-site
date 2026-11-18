@@ -91,3 +91,187 @@
     scroll-behavior: auto;
   }
 }
+
+/* Tipografia dos posts do blog (Markdown renderizado) */
+.prose-computer {
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 21px;
+  line-height: 1.75;
+  color: var(--color-ink);
+}
+/* Ritmo de newsletter: parágrafos curtos com bastante respiro */
+.prose-computer > * + * {
+  margin-top: 1.15em;
+}
+.prose-computer strong {
+  font-weight: 600;
+}
+.prose-computer h2 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.6em;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-top: 1.6em;
+}
+.prose-computer h2 + * {
+  margin-top: 0.9em;
+}
+.prose-computer h3 {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-top: 2em;
+}
+.prose-computer a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.prose-computer a:hover {
+  color: var(--color-accent);
+}
+
+.prose-computer ul,
+.prose-computer ol {
+  padding-left: 1.2em;
+}
+.prose-computer ul {
+  list-style: disc;
+}
+.prose-computer ol {
+  list-style: decimal;
+}
+.prose-computer li + li {
+  margin-top: 0.7em;
+}
+.prose-computer li::marker {
+  color: var(--color-muted);
+}
+.prose-computer blockquote {
+  border-left: 1px solid var(--color-ink);
+  padding-left: 1.2em;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.15em;
+  font-style: italic;
+  line-height: 1.5;
+}
+.prose-computer hr {
+  border: 0;
+  width: 48px;
+  border-top: 1px solid var(--color-ink);
+  margin: 3.2em auto;
+}
+.prose-computer hr + h2 {
+  margin-top: 0;
+}
+.prose-computer code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.85em;
+  background: var(--color-beige);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+}
+.prose-computer pre {
+  background: var(--color-navy);
+  color: var(--color-paper);
+  padding: 1.2em 1.4em;
+  overflow-x: auto;
+  font-size: 0.8em;
+  border-radius: var(--radius-md);
+}
+.prose-computer pre code {
+  background: none;
+  padding: 0;
+}
+.prose-computer .answer {
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 1.1em 1.3em;
+  font-size: 0.95em;
+}
+.prose-computer table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.78em;
+  line-height: 1.5;
+}
+.prose-computer th,
+.prose-computer td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.75em 1em 0.75em 0;
+  border-bottom: 1px solid var(--color-line);
+}
+.prose-computer th {
+  font-weight: 500;
+  color: var(--color-muted);
+  border-bottom-color: var(--color-ink);
+}
+.prose-computer li:has(> label > input[type="checkbox"]) {
+  list-style: none;
+  margin-left: -1.2em;
+}
+.prose-computer li > label:has(> input[type="checkbox"]) {
+  cursor: pointer;
+}
+.prose-computer li > label:has(> input:checked) {
+  color: var(--color-muted);
+}
+.prose-computer li:has(> input[type="checkbox"]) {
+  list-style: none;
+  margin-left: -1.2em;
+}
+.prose-computer input[type="checkbox"] {
+  appearance: none;
+  width: 0.8em;
+  height: 0.8em;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-sm);
+  margin-right: 0.6em;
+  vertical-align: -0.05em;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.prose-computer input[type="checkbox"]:checked {
+  background: var(--color-ink)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23f2f1ec' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / 80% no-repeat;
+}
+.prose-computer img {
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
+/* Estilo dos artigos: tech minimalista. REGRA: artigos sempre em Inter (sans); o resto do site usa as serifadas. */
+.prose-tech {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #2a2a28;
+}
+.prose-tech h2 {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 1.45em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.prose-tech h3 {
+  font-weight: 600;
+  font-size: 1em;
+}
+.prose-tech strong {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.prose-tech .answer {
+  background: #ebe9e2;
+  border: 0;
+  border-radius: 8px;
+}
+.prose-tech hr {
+  width: 100%;
+  border-top-color: var(--color-line);
+}
