@@ -57,6 +57,8 @@ export const hero = {
   cta: { label: "Falar com o time", href: contactHash },
   image: "/images/hero.jpg",
   imageAlt: "Pessoa caminhando em um espaço de concreto com luz diagonal",
+  // vídeo do hero: 1080p sem áudio. AV1 (webm) primeiro, H.264 (mp4) de fallback
+  video: { webm: "/videos/hero.webm", mp4: "/videos/hero.mp4", poster: "/images/hero-poster.jpg" },
 };
 
 export const statement = {
@@ -149,7 +151,7 @@ export const optimized = {
     },
     {
       icon: "layers",
-      title: "Complexo",
+      title: "Para Ambientes Complexos",
       description:
         "Ambientes complexos, sozinhos, exigem profundidade — o que faz da realidade o teste mais difícil, sustentando a criação e a captura de lógica e capacidade globais entre fluxos de trabalho.",
     },

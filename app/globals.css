@@ -83,6 +83,125 @@
   animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* vídeo do hero: entra com um zoom-out lento */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-zoom {
+    animation: hero-zoom 2.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+/* hero "ponto que abre" (a mesma media query do Hero.tsx): a seção sobe por
+   baixo do header e fica presa enquanto a pista extra (180vh) é rolada. O
+   estado inicial (ponto preto no centro, header escondido) já vem do CSS
+   para não piscar antes do JS assumir. --hdr = altura do header, medida no cliente. */
+@media (min-width: 768px) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
+  html:has(.hero-pin) header {
+    opacity: 0;
+    will-change: opacity, transform;
+  }
+  .hero-pin {
+    height: 280vh;
+    margin-top: calc(-1 * var(--hdr, 76px));
+  }
+  .hero-pin .hero-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 0;
+  }
+  .hero-pin .hero-card {
+    height: 100%;
+    min-height: 0;
+    border-radius: 0;
+    background: var(--color-ink);
+    clip-path: circle(4.5px at 50% 50%);
+    will-change: clip-path;
+  }
+  .hero-pin .hero-zoom {
+    animation: none;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  .hero-pin .hero-copy {
+    opacity: 0;
+  }
+  .hero-pin .hero-copy .rise {
+    animation: none;
+  }
+
+  /* setinha fina de rolagem no estado de ponto (opacidade controlada pelo Hero.tsx) */
+  .hero-pin .hero-cue {
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: 44px;
+    margin-left: -7px;
+    z-index: 2;
+    color: var(--color-muted);
+    pointer-events: none;
+    animation: hero-cue 2.4s ease-in-out infinite;
+  }
+
+  /* header "junto" do hero: transparente, texto branco, vídeo passando por trás.
+     [data-on-hero] é ligado pelo Hero.tsx enquanto o hero está sob o header. */
+  .site-header {
+    transition: background-color 0.35s ease;
+  }
+  .site-header .hdr-mark,
+  .site-header .hdr-link,
+  .site-header .hdr-cta {
+    transition: color 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
+  }
+  .site-header > div {
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .site-header[data-on-hero] {
+    background-color: transparent;
+    color: var(--color-paper);
+  }
+  /* sobre o vídeo, logo/links/botão descem um pouco (respiro do topo) e, quando
+     o card recua, acompanham o recuo (--hero-in / --hero-down, vindos do Hero.tsx;
+     sem transição, para seguir a rolagem sem atraso) */
+  .site-header[data-on-hero] > div {
+    transform: translateY(10px);
+    translate: 0 var(--hero-down, 0px);
+    padding-inline: calc(40px + var(--hero-in, 0px));
+  }
+  .site-header[data-on-hero] .hdr-mark {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+  }
+  .site-header[data-on-hero] .hdr-link {
+    color: color-mix(in srgb, var(--color-paper) 78%, transparent);
+  }
+  .site-header[data-on-hero] .hdr-link:hover {
+    color: var(--color-paper);
+  }
+  .site-header[data-on-hero] .hdr-cta {
+    background-color: var(--color-paper);
+    border-color: var(--color-paper);
+    color: var(--color-ink);
+  }
+}
+.hero-cue {
+  display: none;
+}
+@keyframes hero-cue {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 7px;
+  }
+}
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .rise {
     animation: none;
@@ -370,4 +489,132 @@ html.cf-lock body > :not([role="dialog"]) { visibility: hidden; }
     animation: none;
   }
   .cf-out-fwd, .cf-out-back { display: none; }
+}
+
+/* Metodologia: linha do tempo com progresso de rolagem ("um ponto percorre a rota").
+   --p (0..1) vem do ScrollTimeline. Mobile: trilho vertical, sem trava.
+   Desktop: seção presa (sticky) até a linha completar; trilho horizontal. */
+.rota {
+  --p: 0;
+  position: relative;
+  padding-left: 1.75rem;
+}
+.rota-rail,
+.rota-run {
+  position: absolute;
+  pointer-events: none;
+}
+.rota-rail {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: color-mix(in srgb, var(--color-line) 70%, transparent);
+}
+.rota-run {
+  left: -0.5px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-navy);
+  transform: scaleY(var(--p));
+  transform-origin: center top;
+}
+.rota-step {
+  position: relative;
+}
+.rota-dot {
+  position: absolute;
+  left: calc(-1.75rem - 5px);
+  top: 0.55rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 9999px;
+  background: var(--color-beige);
+  border: 1px solid var(--color-line);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.rota-step[data-lit] .rota-dot {
+  background: var(--color-navy);
+  border-color: var(--color-navy);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-navy) 12%, transparent);
+}
+
+@media (min-width: 768px) {
+  .rota {
+    padding-left: 0;
+    padding-top: 2.5rem;
+  }
+  .rota-rail {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+  .rota-run {
+    top: -0.5px;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+    transform: scaleX(var(--p));
+    transform-origin: left center;
+  }
+  .rota-dot {
+    left: 50%;
+    top: calc(-2.5rem - 5.5px);
+    transform: translateX(-50%) scale(0.85);
+  }
+  .rota-step[data-lit] .rota-dot {
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+/* Trava: a seção fica presa enquanto a pista extra (260vh) é rolada —
+   lenta de propósito, para dar tempo de ler cada passo. */
+@media (min-width: 768px) and (min-height: 640px) {
+  .rota-pin {
+    height: 360vh;
+  }
+  .rota-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 76px; /* altura do header fixo */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rota-dot { transition: none; }
+  .rota-pin { height: auto; }
+  .rota-stage { position: static; height: auto; padding-top: 0; }
+  .rota-stage > .shell { padding-block: 8rem; }
+}
+
+/* Nossa filosofia: o card salta no hover (mola que passa do ponto e assenta). */
+.salto {
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease,
+    background-color 0.3s ease, border-color 0.3s ease;
+}
+.salto-icon {
+  transition: transform 0.5s cubic-bezier(0.34, 1.8, 0.64, 1) 0.05s;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .salto:hover {
+    z-index: 1;
+    transform: translateY(-10px);
+    background: var(--color-card);
+    border-color: var(--color-navy);
+    box-shadow: 0 18px 32px -18px color-mix(in srgb, var(--color-navy) 45%, transparent);
+  }
+  .salto:hover .salto-icon {
+    transform: translateY(-3px) rotate(-8deg);
+  }
 }

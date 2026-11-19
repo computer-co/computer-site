@@ -16,12 +16,15 @@ export default function OptimizedImpact() {
           {o.title}
         </h2>
 
-        <div className="mt-16 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-3">
+        <div className="mt-16 grid md:grid-cols-3">
           {o.columns.map((col) => {
             const Icon = icons[col.icon as keyof typeof icons];
             return (
-              <div key={col.title} className="bg-paper p-9">
-                <Icon size={22} strokeWidth={1.4} className="text-ink" />
+              <div
+                key={col.title}
+                className="salto -mt-px border border-line bg-paper p-9 first:mt-0 md:mt-0 md:-ml-px md:first:ml-0"
+              >
+                <Icon size={22} strokeWidth={1.4} className="salto-icon text-ink" />
                 <h3 className="mt-6 font-serif text-[1.5rem] font-normal leading-snug">
                   {col.title}
                 </h3>

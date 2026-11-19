@@ -11,7 +11,7 @@ function Wordmark() {
     <Link href="/" className="group flex min-w-0 items-center gap-2">
       <span
         aria-hidden
-        className="grid h-7 w-7 shrink-0 place-items-center bg-ink font-serif text-[15px] italic leading-none text-paper sm:h-8 sm:w-8 sm:text-[17px]"
+        className="hdr-mark grid h-7 w-7 shrink-0 place-items-center bg-ink font-serif text-[15px] italic leading-none text-paper sm:h-8 sm:w-8 sm:text-[17px]"
       >
         {brand.mark}
       </span>
@@ -30,7 +30,7 @@ export default function Header({
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-paper/95 pt-2 md:pt-3">
+    <header className="site-header sticky top-0 z-50 bg-paper/95 pt-2 md:pt-3">
       <div className="shell relative flex h-16 items-center justify-between">
         <Wordmark />
 
@@ -40,7 +40,7 @@ export default function Header({
             <Link
               key={l.label}
               href={l.href}
-              className="text-[13px] text-muted transition-colors hover:text-ink"
+              className="hdr-link text-[13px] text-muted transition-colors hover:text-ink"
             >
               {l.label}
             </Link>
@@ -49,7 +49,7 @@ export default function Header({
 
         {/* CTA — desktop */}
         <div className="hidden md:block">
-          <Button href={nav.cta.href} variant="primary" className="px-5 py-2.5">
+          <Button href={nav.cta.href} variant="primary" className="hdr-cta px-5 py-2.5">
             {nav.cta.label}
           </Button>
         </div>
